@@ -1,0 +1,22 @@
+.navbar_clr{
+    	background-color:#811a91;
+    	font-family:"Segoe UI";
+    	padding: 5px;
+	 }
+	.navbar li:hover{
+		background-color:#AB47BC;
+		border-radius: 5px;
+	 }
+	 .navbar-nav span{
+	 	font-weight: bold;
+	 	color: white;
+	 }
+	 .nav_header_font{
+	 	font-size: 18px;
+	 	color: white !important;
+	 }
+	 @media only screen and (min-width:720px){
+	    .nav_header_font{
+	        font-size: 25px;
+	    }
+ 	}
