@@ -8,13 +8,14 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
 		
 		<!-- custom css files-->
 		<style><#include "onlinejudge2019.css"></style>
 	</head>
 	<body>
 		<!-- navigation bar start -->
-		<nav class="navbar navbar-inverse navbar_clr">
+		<nav class="navbar navbar-inverse navbar_clr main_nav">
 			<div class="container-fluid">
 				<div class="navbar-header">
 			    	<button style="background-color:#811a91;" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
