@@ -22,7 +22,12 @@
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
-				
+		<!-- Adding freemarker dependency -->
+		<dependency>
+		    <groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		    <version>2.3.28</version>
+		</dependency>	
 		<!-- Adding mysql dependency -->
 		<dependency>
 		    <groupId>mysql</groupId>
