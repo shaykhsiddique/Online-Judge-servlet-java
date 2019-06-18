@@ -1,0 +1,81 @@
+.navbar_clr{
+   	background-color:#811a91 !important;
+   	color:white !important;
+ }
+ 
+ .main_nav{
+ 	font-family:"Segoe UI";
+ 	font-size:16px;
+   	padding: 5px;
+ }
+ 
+.main_nav li:hover{
+	background-color:#AB47BC;
+	border-radius: 5px;
+ }
+ 
+.main_nav span{
+ 	font-weight: bold;
+ 	color: white;
+ }
+ 
+.nav_header_font{
+ 	font-size: 18px;
+ 	color: white !important;
+ }
+ 
+@media only screen and (min-width:720px){
+    .nav_header_font{
+        font-size: 25px;
+    }
+}
+
+.body_style{
+	padding-top: 90px;
+}
+
+#left_announce_panel{
+	margin:10px;
+	min-height: 200px;
+}
+
+#left_announce_panel li{
+	border-bottom: 1px solid #B39DDB;
+	padding-bottom: 10px;
+	padding-top: 10px;	
+}
+
+#left_announce_panel li > a{
+	color:#311B92;
+	font-weight: bold;
+}
+
+#right_rank_panel, #left_announce_panel .panel-default{
+	border: 1px solid #B39DDB;
+}
+
+#left_announce_panel li:last-child{
+	border: none;
+}
+
+#right_rank_panel{
+	margin: 10px;
+	height: 280px;
+}
+
+.middle_home>h3{
+	color:#600;
+	border-bottom: 2px solid #ddd;
+	padding-bottom: 5px;
+}
+
+.middle_home img{
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+.middle_home p{
+	font-size:17px;
+	text-align: justify;
+  	text-justify: inter-word;
+}
