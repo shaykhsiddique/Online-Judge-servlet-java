@@ -1,8 +1,8 @@
 <#include "layouts/header.ftl.html">
 
 	<!-- body part -->
-	<div class="container-fluid>
-		<div class="row body_style">
+	<div class="container-fluid body_style">
+		<div class="row">
 			<!-- left part -->
 			<div class="col-sm-3">
 				<nav id="left_announce_panel">
