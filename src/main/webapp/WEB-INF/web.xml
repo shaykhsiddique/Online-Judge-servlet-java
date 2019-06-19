@@ -10,9 +10,29 @@
 		<description></description>
 		<servlet-class>me.shaykhsiddique.HomeController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>RegistrationView</servlet-name>
+		<display-name>RegistrationView</display-name>
+		<description>registration page</description>
+		<servlet-class>me.shaykhsiddique.RegistrationView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RegisterController</servlet-name>
+		<display-name>RegisterController</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.RegisterController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
 		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegistrationView</servlet-name>
+		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RegisterController</servlet-name>
+		<url-pattern>/user/register</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
     <welcome-file>home</welcome-file>
