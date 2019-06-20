@@ -24,7 +24,7 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	public void insertIntoDB() {
+	public boolean insertIntoDB() {
 		Database DB = new Database();
 		try {
 			String sql = "insert into users(fullname, username, email, password) values(?, ?, ?, ?)";
@@ -35,10 +35,12 @@ public class User {
 			ps.setString(3, this.email);
 			ps.setString(4, this.password);
 			ps.executeUpdate();
+			return true;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 	public String getFullname() {
