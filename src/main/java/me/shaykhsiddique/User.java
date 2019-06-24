@@ -2,7 +2,9 @@ package me.shaykhsiddique;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class User {
 	private String fullname;
@@ -24,7 +26,7 @@ public class User {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	public boolean insertIntoDB() {
+	public boolean insertDao() {
 		Database DB = new Database();
 		try {
 			String sql = "insert into users(fullname, username, email, password) values(?, ?, ?, ?)";
@@ -35,11 +37,48 @@ public class User {
 			ps.setString(3, this.email);
 			ps.setString(4, this.password);
 			ps.executeUpdate();
+			conn.close();
 			return true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+	
+	public boolean userValidateDao(String __username, String __password) {
+
+		Database DB_login = new Database();
+		String sql = "select * from users where username=?";
+		Connection conn;
+		boolean status = false;
+		try {
+			conn = DB_login.JdbcConfig();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, __username.trim());
+//			ps.setString(2, __password.trim());
+			ResultSet rs=ps.executeQuery();
+			status=rs.next();
+			String pass = rs.getString("password");
+			
+			status = BCrypt.checkpw(__password, pass);
+			
+			if(status) {
+//				load initilization from databases
+				this.username = rs.getString("username");
+				this.fullname = rs.getString("fullname");
+				this.email=rs.getString("email");
+				this.password=rs.getString("password");
+				this.user_role=rs.getInt("user_rule");
+				this.rank_score = rs.getInt("score");
+				conn.close();
+			}
+			
+			return status;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return status;
 		}
 	}
 	public String getFullname() {

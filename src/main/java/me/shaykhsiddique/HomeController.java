@@ -55,7 +55,12 @@ public class HomeController extends HttpServlet {
 		Template template = cfg.getTemplate("home.ftl");
 		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("message", "Hello World!");
+		if(request.getSession().getAttribute("user")!=null) {
+			data.put("logged_in", 1);
+			data.put("username", request.getSession().getAttribute("user"));
+		}else {
+			data.put("logged_in", 0);
+		}
 		try {
 			template.process(data, out);
 		} catch (TemplateException e) {

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.mindrot.jbcrypt.BCrypt;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -55,18 +56,17 @@ public class RegisterController extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		User user= new User();
-		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-		String uname = request.getParameter("username");
-		String pass = request.getParameter("password");
-		encryptor.setPassword(uname);
-		String encrypted_pass= encryptor.encrypt(pass);
+		String uname = request.getParameter("username").trim();
+		String pass = request.getParameter("password").trim();
 		
+		String salt = BCrypt.gensalt();
+		String hashed_password = BCrypt.hashpw(pass, salt);
 		
-		user.setFullname(request.getParameter("fullname"));
-		user.setUsername(request.getParameter("username"));
-		user.setEmail(request.getParameter("email"));
-		user.setPassword(encrypted_pass);
-		boolean success_reg = user.insertIntoDB();
+		user.setFullname(request.getParameter("fullname").trim());
+		user.setUsername(uname);
+		user.setEmail(request.getParameter("email").trim());
+		user.setPassword(hashed_password);
+		boolean success_reg = user.insertDao();
 		
 		Template template = cfg.getTemplate("successregister.ftl.html");
 		Writer out = response.getWriter();

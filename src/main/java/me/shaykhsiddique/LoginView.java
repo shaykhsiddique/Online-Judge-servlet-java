@@ -56,10 +56,15 @@ public class LoginView extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Error msg: "+request.getAttribute("error_msg"));
 		Template template = cfg.getTemplate("login.ftl.html");
 		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("message", "Hello World!");
+		if(request.getSession().getAttribute("user")!=null) {
+			data.put("logged_in", 1);			
+		}else {
+			data.put("logged_in", 0);
+		}
 		try {
 			template.process(data, out);
 		} catch (TemplateException e) {

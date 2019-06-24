@@ -34,6 +34,12 @@
 		<description>check logins</description>
 		<servlet-class>me.shaykhsiddique.LoginController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>LogoutController</servlet-name>
+		<display-name>LogoutController</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.LogoutController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
 		<url-pattern>/home</url-pattern>
@@ -53,6 +59,10 @@
 	<servlet-mapping>
 		<servlet-name>LoginController</servlet-name>
 		<url-pattern>/user/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutController</servlet-name>
+		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
     <welcome-file>home</welcome-file>

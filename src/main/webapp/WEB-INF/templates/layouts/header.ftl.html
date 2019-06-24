@@ -34,8 +34,13 @@
 				        <li><a href="#"><span class="clr">ABOUT</span></a></li>
 			   		</ul>
 			    	<ul class="nav navbar-nav navbar-right">
-				        <li><a href="/Online-Judge/register"><span class="glyphicon glyphicon-user clr"></span><span class="clr"> SIGN UP</span></a></li>
-				        <li><a href="/Online-Judge/login"><span class="glyphicon glyphicon-log-in clr"></span><span class="clr"> LOGIN</span></a></li>
+				        <#if logged_in == 1>
+			    			<li><a href="#"><span class="glyphicon glyphicon-user clr"></span><span class="clr"> ${username}</span></a></li>
+					        <li><a href="/Online-Judge/logout"><span class="glyphicon glyphicon-log-in clr"></span><span class="clr"> Logout</span></a></li>
+			    		<#else>
+					        <li><a href="/Online-Judge/register"><span class="glyphicon glyphicon-user clr"></span><span class="clr"> SIGN UP</span></a></li>
+					        <li><a href="/Online-Judge/login"><span class="glyphicon glyphicon-log-in clr"></span><span class="clr"> LOGIN</span></a></li>
+				        </#if>
 		    		</ul>
 		  		</div>
 	  		</div>
