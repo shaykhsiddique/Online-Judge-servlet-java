@@ -60,8 +60,13 @@ public class LoginView extends HttpServlet {
 		Template template = cfg.getTemplate("login.ftl.html");
 		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
+		if(request.getAttribute("error_msg")!=null)
+			data.put("error_msg", 1);
+		else
+			data.put("error_msg", 0);
+		
 		if(request.getSession().getAttribute("user")!=null) {
-			data.put("logged_in", 1);			
+			data.put("logged_in", 1);
 		}else {
 			data.put("logged_in", 0);
 		}

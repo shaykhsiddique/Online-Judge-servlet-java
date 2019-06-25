@@ -82,12 +82,12 @@
 
 @media only screen and (min-width:720px){
 	.login_layout form{
-		margin: 80px 200px 0px 200px;
+		margin: 30px 200px 0px 200px;
 	}
 }
 
 .login_layout {
-	background-color: #f3e5f5;
+	background-color: #e0e0e0;
 	color:#1a237e;
 	padding-bottom: 20px;
 }
@@ -127,4 +127,9 @@
 
 .center_text{
 	text-align: center;
+}
+.login_layout span{
+	font-weight: bold;
+	font-family: "Lucida Console", Monaco, monospace;
+	color: #c75f3e;
 }

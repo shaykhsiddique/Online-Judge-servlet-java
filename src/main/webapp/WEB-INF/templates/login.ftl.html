@@ -12,6 +12,13 @@
 				    <div class="panel-body">
 				    	<h3>MEMBER LOGIN</h3>
 				    	<form action="user/login" method="POST">
+				    		<div class="center_text">
+				    			<#if error_msg == 1>
+					    			<span>Wrong Username or Password</span>
+					    		<#else>
+							        <span>Please Login First</span>
+						        </#if>
+				    		</div><br>
 						    <div class="form-group">
 						      <label for="username">Username:</label><br>
 						      <input type="text" class="form-control" id="email" placeholder="Enter username" name="username">

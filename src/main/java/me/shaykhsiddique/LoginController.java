@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 	        response.addCookie(cPassword);
 			response.sendRedirect(request.getContextPath() + "/");			
 		}else {
-			request.setAttribute("error_msg", "not found.");
+			request.setAttribute("error_msg", "Wrong Username or Password");
 			RequestDispatcher rd = request.getRequestDispatcher("/login");
 			rd.forward(request,response);
 		}
