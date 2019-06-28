@@ -1,0 +1,71 @@
+<#include "layouts/header.ftl.html">
+
+	<div class="container-fluid">
+		<div class="row" style="padding-top: 110px">
+			<div class="col-sm-2">
+				<!-- this is left spacing -->
+			</div>
+			<div class="col-sm-8">
+				<!-- login panel -->
+			
+				<div class="panel panel-default login_layout reg_layout">
+				    <div class="panel-body">
+				    	<h3>MEMBER REGISTRATION</h3>
+				    	<form action="/Online-Judge/user/register" method="POST" oninput='con_password.setCustomValidity(con_password.value != password.value ? "Passwords do not match." : "")'>
+				    		<div class="center_text">
+							        <#if error_msg == 1>
+						    			<span>Username already exist.</span>
+						    		<#else>
+								        <span>Be a part of this platform.</span>
+							        </#if>
+				    		</div><br>
+						    <div class="form-group">
+						      <label class="control-label">FullName:</label>
+						      <input type="text" class="form-control" name="fullname" required>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label">Username:</label>
+						      <input type="text" class="form-control" name="username" required>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label">Email:</label>
+						      <input type="email" class="form-control" name="email" required>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label">Password:</label>
+						      <input type="password" class="form-control" placeholder="Password" name="password" required>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label">Confirm Password:</label>
+						      <input type="password" class="form-control" placeholder="Confirm password" name="con_password" required>
+						    </div><br>
+						    <div class="center_text">
+						    	<button type="submit" class="btn btn-default">Register</button>
+					    	</div>
+						</form><br>
+						<div class="center_text">
+							<a href="/Online-Judge/login">Already have an account? Login here.</a>
+						</div>
+					</div>
+			  	</div>
+			</div>
+			<div class="col-sm-2">
+				<!-- right panel  -->
+			</div>
+		</div>		
+	</div>
+
+	</body>
+</html>
+
+<!-- 	<h1 style="padding-top: 80px;">Registration Page</h1> -->
+<!-- 	<form action="./user/register" method="POST"> -->
+<!-- 		<span>Full Name: </span><input type="text" name="fullname"><br><br> -->
+<!-- 		<span>Username: </span><input type="text" name="username"><br><br> -->
+<!-- 		<span>Email: </span><input type="text" name="email"><br><br> -->
+<!-- 		<span>Password: </span><input type="password" name="password"><br><br> -->
+<!-- 		<span>Confirm Password: </span><input type="password" name="con_password"><br><br> -->
+<!-- 		<input type="submit" value="Register"> -->
+<!-- 	</form> -->
+<!-- </body> -->
+<!-- </html> -->

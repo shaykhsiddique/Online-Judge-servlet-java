@@ -18,20 +18,18 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 /**
- * Servlet implementation class HomeController
+ * Servlet implementation class RegistrationView
  */
-public class HomeController extends HttpServlet {
+public class RegistrationView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    Configuration cfg;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public HomeController() {
+	Configuration cfg;
+    public RegistrationView() {
         super();
+
     }
-    
-    public void init(ServletConfig config) throws ServletException {
-    	super.init(config);
+
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
     	String tampl_path = "/WEB-INF/templates";
     	cfg = new Configuration(Configuration.VERSION_2_3_28);
 
@@ -46,31 +44,31 @@ public class HomeController extends HttpServlet {
     	cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
     	cfg.setLogTemplateExceptions(false);
     	cfg.setWrapUncheckedExceptions(true);
-    }
+	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Template template = cfg.getTemplate("home.ftl");
+		Template template = cfg.getTemplate("register.ftl.html");
 		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(request.getSession().getAttribute("user")!=null) {
 			data.put("logged_in", 1);
-			data.put("username", request.getSession().getAttribute("user"));
 		}else {
 			data.put("logged_in", 0);
 		}
+		
+		if(request.getAttribute("error_msg")!=null)
+			data.put("error_msg", 1);
+		else
+			data.put("error_msg", 0);
+		
 		try {
 			template.process(data, out);
 		} catch (TemplateException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
