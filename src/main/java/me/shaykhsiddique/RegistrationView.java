@@ -55,6 +55,12 @@ public class RegistrationView extends HttpServlet {
 		}else {
 			data.put("logged_in", 0);
 		}
+		
+		if(request.getAttribute("error_msg")!=null)
+			data.put("error_msg", 1);
+		else
+			data.put("error_msg", 0);
+		
 		try {
 			template.process(data, out);
 		} catch (TemplateException e) {

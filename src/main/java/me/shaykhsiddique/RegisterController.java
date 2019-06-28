@@ -6,6 +6,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -68,20 +69,22 @@ public class RegisterController extends HttpServlet {
 		user.setPassword(hashed_password);
 		boolean success_reg = user.insertDao();
 		
-		Template template = cfg.getTemplate("successregister.ftl.html");
-		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
-		if(success_reg)
-			data.put("success_reg", 1);
-		else
-			data.put("success_reg", 0);
-			
-		try {
-			template.process(data, out);
-		} catch (TemplateException e) {
-			e.printStackTrace();
+		if(success_reg) {			
+			data.put("logged_in", 0);
+			Template template = cfg.getTemplate("successregister.ftl.html");
+			Writer out = response.getWriter();
+			try {
+				template.process(data, out);
+			} catch (TemplateException e) {
+				e.printStackTrace();
+			}
 		}
-		
+		else {			
+			request.setAttribute("error_msg", "username already exits.");
+			RequestDispatcher rd = request.getRequestDispatcher("/register");
+			rd.forward(request,response);
+		}		
 	}
 
 	/**

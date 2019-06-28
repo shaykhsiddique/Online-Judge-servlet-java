@@ -57,7 +57,8 @@ public class LoginController extends HttpServlet {
 		}else {
 			request.setAttribute("error_msg", "Wrong Username or Password");
 			RequestDispatcher rd = request.getRequestDispatcher("/login");
-			rd.forward(request,response);
+//			rd.forward(request,response);
+			rd.include(request, response);
 		}
 	}
 
