@@ -18,20 +18,23 @@ import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 
 /**
- * Servlet implementation class HomeController
+ * Servlet implementation class LoginView
  */
-public class HomeController extends HttpServlet {
+public class LoginView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    Configuration cfg;
+	Configuration cfg;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeController() {
+    public LoginView() {
         super();
     }
-    
-    public void init(ServletConfig config) throws ServletException {
-    	super.init(config);
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
     	String tampl_path = "/WEB-INF/templates";
     	cfg = new Configuration(Configuration.VERSION_2_3_28);
 
@@ -46,18 +49,23 @@ public class HomeController extends HttpServlet {
     	cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
     	cfg.setLogTemplateExceptions(false);
     	cfg.setWrapUncheckedExceptions(true);
-    }
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Template template = cfg.getTemplate("home.ftl");
+		// TODO Auto-generated method stub
+		Template template = cfg.getTemplate("login.ftl.html");
 		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
+		if(request.getAttribute("error_msg")!=null)
+			data.put("error_msg", 1);
+		else
+			data.put("error_msg", 0);
+		
 		if(request.getSession().getAttribute("user")!=null) {
 			data.put("logged_in", 1);
-			data.put("username", request.getSession().getAttribute("user"));
 		}else {
 			data.put("logged_in", 0);
 		}

@@ -79,3 +79,65 @@
 	text-align: justify;
   	text-justify: inter-word;
 }
+
+@media only screen and (min-width:720px){
+	.login_layout form{
+		margin: 30px 200px 0px 200px;
+	}
+}
+
+.login_layout {
+	background-color: #e0e0e0;
+	color:#1a237e;
+	padding-bottom: 20px;
+}
+.login_layout h3{
+	font-weight: bold;
+	font-family: "Lucida Console", Monaco, monospace;
+	text-align: center;
+}
+
+.login_layout .form-group{
+	background-color: white;
+	padding: 15px;
+	border-radius: 15px;
+}
+.login_layout input{
+	border: 1px solid #889bba ;
+}
+.login_layout input:hover{
+	border: 1px solid #811a91 ;
+}
+.login_layout input:focus{
+	border: 1px solid #811a91 ;
+}
+.login_layout label{
+	font-weight: bold;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+.login_layout button{
+	font-weight: bold;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+.login_layout a{
+	color: #1a237e;
+	font-weight: bold;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+
+.center_text{
+	text-align: center;
+}
+.login_layout span{
+	font-weight: bold;
+	font-family: "Lucida Console", Monaco, monospace;
+	color: #c75f3e;
+}
+
+.reg_layout .form-control {
+  display: inline;
+}
+.reg_layout .form-group{
+	background-color: #e0e0e0;
+	padding: 5px;
+}
