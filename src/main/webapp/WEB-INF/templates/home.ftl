@@ -58,5 +58,4 @@
 			<!-- end part -->
 		</div>
 	</div>
-</body>
-</html>
+	<#include "layouts/footer.ftl.html">
