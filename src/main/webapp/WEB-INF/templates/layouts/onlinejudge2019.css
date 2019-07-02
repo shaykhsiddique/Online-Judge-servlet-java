@@ -1,13 +1,32 @@
+body{
+	background-color: #EDE7F6;
+}
+.top_padding{
+	padding-top: 110px;
+}
+
 .navbar_clr{
    	/* background-color:#811a91 !important; */
    	background-color:#4a148c !important;
    	color:white !important;
  }
  
+
+.navbar_clr .dropdown li a:hover{
+	background-color:#7E57C2;
+	border-radius: 5px;
+} 
+
+.navbar_clr .dropdown li a{
+	padding: 10px;
+	font-weight: bold;
+}
+ 
  .main_nav{
  	font-family:"Segoe UI";
  	font-size:16px;
    	padding: 5px;
+   	color: white !important;
  }
  
 .main_nav li:hover{
@@ -266,3 +285,5 @@ footer {
 .footer-copyright a{
 	color:#fff;
 }
+
+
