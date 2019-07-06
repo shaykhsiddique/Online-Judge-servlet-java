@@ -285,5 +285,9 @@ footer {
 .footer-copyright a{
 	color:#fff;
 }
-
-
+.problems_table{	
+    font-family: verdana,arial,sans-serif;
+}
+.problems_table a{
+	color: #333;
+}
