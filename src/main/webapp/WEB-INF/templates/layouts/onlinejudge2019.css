@@ -5,6 +5,10 @@ body{
 	padding-top: 110px;
 }
 
+.blue-highlighter{
+	color:#1a237e;
+}
+
 .navbar_clr{
    	/* background-color:#811a91 !important; */
    	background-color:#4a148c !important;
@@ -111,6 +115,11 @@ body{
 	color:#1a237e;
 	padding-bottom: 20px;
 }
+
+#ck_editor_style{
+	color:black;
+}
+
 .login_layout h3{
 	font-weight: bold;
 	font-family: "Lucida Console", Monaco, monospace;
@@ -160,6 +169,12 @@ body{
 .reg_layout .form-group{
 	background-color: #e0e0e0;
 	padding: 5px;
+}
+
+#profile_text-style{
+	color:grey;
+	font-weight: bold;
+	font-size: 15px;
 }
 
 footer {
@@ -290,4 +305,32 @@ footer {
 }
 .problems_table a{
 	color: #333;
+}
+
+.problem-body-style h2{
+	font-weight: bold;
+	text-align: center;
+}
+.problem-body-style>table th{
+	text-align: center;
+	font-size: 12px;
+}
+.problem-body-style{
+	text-align: justify;
+  	text-justify: inter-word;
+  	font-size: 16px;
+}
+
+.problem-right-style{
+	padding-top: 20px;
+}
+
+.problem-right-style ul>li{
+	padding: 10px;
+}
+
+.problem-right-style ul>li>a{
+	color:#333;
+	font-weight: bold;
+	
 }

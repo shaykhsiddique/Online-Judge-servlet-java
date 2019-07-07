@@ -1,0 +1,92 @@
+<#include "layouts/header.ftl.html">
+
+	<div class="container-fluid">
+		<div class="row top_padding">
+			<div class="col-sm-1">
+			</div>
+			<div class="col-sm-7 problem-body-style">
+				<h2>${problem.problem_id} - ${problem.problem_title}</h2>
+				<table class="table" align="center" style="border:1px solid silver; width: 50%;">
+					<thead>
+						<tr>
+					        <th>Time Limit: </th>
+					        <th>${problem.time_limit_Mils} (ms)</th>
+				      	</tr>
+				      	<tr>
+					        <th>Memory Limit: </th>
+					        <th>${problem.memory_limit_kb} KB</th>
+				      	</tr>
+					</thead>
+				</table>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p>${problem.problem_description}</p>
+						<table class="table" style="border:1px solid silver;">
+							<thead>
+								<tr>
+									<th>Input:</th>
+								</tr>
+								<tr>
+									<th>${problem.sample_input}</th>
+								</tr>
+							</thead>
+						</table>
+						<table class="table" style="border:1px solid silver;">
+							<thead>
+								<tr>
+									<th>Output:</th>
+								</tr>
+								<tr>
+									<th>${problem.sample_output}</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 problem-right-style">
+				<div class="panel panel-default">
+					<div class="panel-heading navbar_clr">
+						<strong>Support Languages: </strong>
+					</div>
+					<div class="panel-body">
+						<p><strong>C , C++ , JAVA , PYTHON</strong></p>
+					</div>
+				</div>
+				<div style="padding-top: 20px">
+					<div class="panel panel-default">
+						<div class="panel-heading navbar_clr">
+							<strong>Summer Contest 2019 </strong>
+						</div>
+						<div class="panel-body">
+							<ul>
+							  <li><a href="#">Problem A</a></li>
+							  <li><a href="#">Problem B</a></li>
+							  <li><a href="#">Problem C</a></li>
+							  <li><a href="#">Problem D</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading navbar_clr">
+						<strong><span class="glyphicon glyphicon-send"></span> Submit: </strong>
+					</div>
+					<div class="panel-body">
+						<strong>Submit Solution: </strong><br>
+						<a style="float: right" href="#" class="btn btn-success" role="button">Submit Code</a><br>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- <h1 class="top_padding">Problem id: ${problem.problem_id}</h1>
+<h1>Problem Name: ${problem.problem_title}</h1>
+<h3>Problem Description: ${problem.problem_description}</h3>
+<span>Sample Input: ${problem.sample_input}</span><br>
+<span>Sample Output: ${problem.sample_output}</span><br>
+<span>Time Limit: ${problem.time_limit_Mils}ms</span><br>
+<span>Memory Limit: ${problem.memory_limit_kb}kb</span><br> -->
+
+<#include "layouts/footer.ftl.html">

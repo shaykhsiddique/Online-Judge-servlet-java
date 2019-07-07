@@ -46,6 +46,7 @@ public class LoginController extends HttpServlet {
 	
 			request.getSession().setAttribute("user", try_user.getUsername());
 			request.getSession().setAttribute("pass", try_user.getPassword());
+			request.getSession().setAttribute("role", try_user.getUser_role());
 			request.getSession().setAttribute("stayConnected", remember_me);
 			Cookie cUserName = new Cookie("cookuser", try_user.getUsername());
 	        Cookie cPassword = new Cookie("cookpass", try_user.getPassword());
