@@ -1,0 +1,179 @@
+<#include "layouts/header.ftl.html">
+
+	<div class="container-fluid">
+		<div class="row top_padding">
+			<div class="col-sm-1">
+				
+			</div>
+			<div class="col-sm-8">
+				<div class="panel panel-default problems_table">
+					<div style="font-weight: bold; font-size: 25px;" class="panel-heading navbar_clr"><i class='fas fa-wind'></i> Problems</div>
+					<div class="panel-body">
+						<a style="float: right" href="/Online-Judge/problems/addproblems" class="btn btn-info" role="button">Add Problem</a><br><br><br>
+						<table id="problem_tables" class="display" style="width:100%; font-size: 16px;">
+				            <thead>
+				                <tr>
+				                    <th>#ID</th>
+				                    <th>Name</th>
+				                    <th><i  style="color: #4a148c;" class='fas fa-bolt'></i> Difficulty</th>
+				                    <th><span style="color:#4a148c;" class="glyphicon glyphicon-send"></span> Submissions</th>
+				                    <th><span style="font-size:25px;color:green">&#x2713;</span> Solved</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				            	<#list problems as problem>
+				            		<tr>
+					                    <td><a href="problems/view?id=${problem.problem_id}">${problem.problem_id}</a></td>
+					                    <td><a href="problems/view?id=${problem.problem_id}">${problem.problem_title}</a></td>
+					                    <td>${problem.difficulty_level}</td>
+					                    <td>52</td>
+					                    <td>35</td>
+					                </tr>
+				            	</#list>
+				                <tr>
+				                    <td><a href="problems/view?id=123">1187G</a></td>
+				                    <td><a href="#">Gang Up</a></td>
+				                    <td>Easy</td>
+				                    <td>52</td>
+				                    <td>35</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">1187F</a></td>
+				                    <td><a href="#">Expected Square</a></td>
+				                    <td>Easy</td>
+				                    <td>15</td>
+				                    <td>11</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">5664S</a></td>
+				                    <td><a href="#">Round The world</a></td>
+				                    <td>Eady</td>
+				                    <td>13</td>
+				                    <td>10</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">5664K</a></td>
+				                    <td><a href="#">Form Up</a></td>
+				                    <td>Easy</td>
+				                    <td>33</td>
+				                    <td>27</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">5664M</a></td>
+				                    <td><a href="#">Colors</a></td>
+				                    <td>Medium</td>
+				                    <td>8</td>
+				                    <td>6</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="problems/view">1187C</a></td>
+				                    <td><a href="problems/view" >The Sleeping Beauty</a></td>
+				                    <td>Hard</td>
+				                    <td>18</td>
+				                    <td>1</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3354A</a></td>
+				                    <td><a href="#">Chess Master</a></td>
+				                    <td>Hard</td>
+				                    <td>17</td>
+				                    <td>7</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3354B</a></td>
+				                    <td><a href="#">Basketball Match</a></td>
+				                    <td>Easy</td>
+				                    <td>32</td>
+				                    <td>19</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3354C</a></td>
+				                    <td><a href="#">Flying Car</a></td>
+				                    <td>Medium</td>
+				                    <td>16</td>
+				                    <td>13</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3594A</a></td>
+				                    <td><a href="#">Peter And his crazy Box</a></td>
+				                    <td>Easy</td>
+				                    <td>42</td>
+				                    <td>34</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3594C</a></td>
+				                    <td><a href="#">Peter's Map</a></td>
+				                    <td>Hard</td>
+				                    <td>11</td>
+				                    <td>4</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3594B</a></td>
+				                    <td><a href="#">Spaceship</a></td>
+				                    <td>Easy</td>
+				                    <td>33</td>
+				                    <td>22</td>
+				                </tr>
+				                <tr>
+				                    <td><a href="#">3594D</a></td>
+				                    <td><a href="#">Change The game</a></td>
+				                    <td>Medium</td>
+				                    <td>22</td>
+				                    <td>15</td>
+				                </tr>
+				            </tbody>
+				        </table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="panel panel-default">
+					<div class="panel-heading navbar_clr">
+						<span style="font-weight: bold"><i class='fas fa-exclamation-triangle'></i> Last unsolved</span>
+					</div>
+					<div class="panel-body">
+						<table class="table" style="border:1px solid silver">
+						    <thead>
+						      <tr>
+						        <th>Date/Time</th>
+						        <th>Problem</th>
+						        <th>Submission</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td>08:55 PM 09/10/19</td>
+						        <td>BITOBYT</td>
+						        <td>43958198</td>
+						      </tr>
+						      <tr>
+						        <td>08:55 PM 09/10/19</td>
+						        <td>BITOBYT</td>
+						        <td>43958198</td>
+						      </tr>
+						      <tr>
+						        <td>08:55 PM 09/10/19</td>
+						        <td>BITOBYT</td>
+						        <td>43958198</td>
+						      </tr>
+						      <tr>
+						        <td>08:55 PM 09/10/19</td>
+						        <td>BITOBYT</td>
+						        <td>43958198</td>
+						      </tr>
+						      <tr>
+						        <td>08:55 PM 09/10/19</td>
+						        <td>BITOBYT</td>
+						        <td>43958198</td>
+						      </tr>
+						    </tbody>
+					    </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+<#include "layouts/footer.ftl.html">
