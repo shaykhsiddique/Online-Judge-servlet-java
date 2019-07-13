@@ -19,6 +19,7 @@ public class Problem {
 	private int memory_limit_kb;
 	private String author_username;
 	private String difficulty_level;
+	private int point;
 	private boolean active_status;
 
 	public Problem() {
@@ -28,7 +29,7 @@ public class Problem {
 	
 	public Problem(String problem_id, String problem_title, String problem_description, String sample_input,
 			String sample_output, String problem_input, String problem_output, int time_limit_Mils, int memory_limit_kb,
-			String author_username, String difficulty_level, boolean active_status) {
+			String author_username, String difficulty_level, int point, boolean active_status) {
 		super();
 		this.problem_id = problem_id;
 		this.problem_title = problem_title;
@@ -41,6 +42,7 @@ public class Problem {
 		this.memory_limit_kb = memory_limit_kb;
 		this.author_username = author_username;
 		this.difficulty_level = difficulty_level;
+		this.point=point;
 		this.active_status = active_status;
 	}
 	
@@ -192,6 +194,7 @@ public class Problem {
 				this.memory_limit_kb = rs.getInt("memory_limit_kb");
 				this.author_username = rs.getString("author_username");
 				this.difficulty_level = rs.getString("difficulty_level");
+				this.point = rs.getInt("point");
 				this.active_status = rs.getBoolean("active_status");
 			}
 		} catch (SQLException e) {
@@ -199,5 +202,43 @@ public class Problem {
 			e.printStackTrace();
 		}
 		return status;
+	}
+	public boolean addProblemDao() {
+		Database DB = new Database();
+		try {
+			String sql = "insert into problems(problem_id, problem_title, problem_description, sample_input, sample_output, problem_input, problem_output, time_limit_Mils, memory_limit_kb, author_username, difficulty_level, point, active_status) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			Connection conn = DB.JdbcConfig();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, this.problem_id);
+			ps.setString(2, this.problem_title);
+			ps.setString(3, this.problem_description);
+			ps.setString(4, this.sample_input);
+			ps.setString(5, this.sample_output);
+			ps.setString(6, this.problem_input);
+			ps.setString(7, this.problem_output);
+			ps.setInt(8, this.time_limit_Mils);
+			ps.setInt(9, this.memory_limit_kb);
+			ps.setString(10, this.author_username);
+			ps.setString(11, this.difficulty_level);
+			ps.setInt(12, this.point);
+			ps.setBoolean(13, this.active_status);
+			ps.executeUpdate();
+			conn.close();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+
+	public int getPoint() {
+		return point;
+	}
+
+
+	public void setPoint(int point) {
+		this.point = point;
 	}
 }

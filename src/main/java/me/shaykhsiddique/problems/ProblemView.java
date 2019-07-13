@@ -79,7 +79,7 @@ public class ProblemView extends HttpServlet {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs=ps.executeQuery();
 			while (rs.next()) {
-				Problem pblm = new Problem(rs.getString("problem_id"), rs.getString("problem_title"), rs.getString("problem_description"), rs.getString("sample_input"), rs.getString("sample_output"), rs.getString("problem_input"), rs.getString("problem_output"), rs.getInt("time_limit_Mils"), rs.getInt("memory_limit_kb"), rs.getString("author_username"), rs.getString("difficulty_level"), rs.getBoolean("active_status"));
+				Problem pblm = new Problem(rs.getString("problem_id"), rs.getString("problem_title"), rs.getString("problem_description"), rs.getString("sample_input"), rs.getString("sample_output"), rs.getString("problem_input"), rs.getString("problem_output"), rs.getInt("time_limit_Mils"), rs.getInt("memory_limit_kb"), rs.getString("author_username"), rs.getString("difficulty_level"), rs.getInt("point"), rs.getBoolean("active_status"));
 				problems.add(pblm);
 			}
 		} catch (SQLException e1) {
