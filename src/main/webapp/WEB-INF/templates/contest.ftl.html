@@ -24,10 +24,25 @@
 						    	<div class="col-sm-8">
 						    		<img src="https://i.imgur.com/XR0hdd8.jpg" class="img-thumbnail" alt="Contest Banner">
 						    	</div>
-						    	<div class="col-sm-4">
-						    	<iframe src="http://free.timeanddate.com/countdown/i6uhqrbm/n73/cf108/cm0/cu4/ct0/cs1/cac000/co1/cr0/ss0/cac000/cpcf00/pcfff/tc833891/fn3/fs175/tatEnds%20In%3A/tac000/tptEnds%20In%3A/tpc000/iso2019-07-14T23:01:00" allowTransparency="true" frameborder="0" width="320" height="125"></iframe>
-								<br><br>
-								<a href="#" type="button" class="btn btn-default">Enter in Contest</a>
+						    	<div class="col-sm-4 timer-details">
+						    		<h3>Contest Ends In</h3>
+							    	<p id="timer">
+										<table align="center">
+											<tr>
+												<th><span id="days">00</span></th>
+												<th><span id="hours">00</span></th>
+												<th><span id="minutes">00</span></th>
+												<th><span id="seconds">00</span></th>
+											</tr>
+											<tr>
+												<td>Days</td>
+												<td>Hrs</td>
+												<td>Min</td>
+												<td>Sec</td>
+											</tr>
+										</table>
+									</p>
+								<a href="/Online-Judge/contest/view" type="button" class="btn btn-default">Enter in Contest</a>
 								<br>
 								<a href="#" type="button" class="btn btn-default">Edit Contest</a>
 						    	<br>
@@ -97,9 +112,9 @@
 			<div class="col-sm-3">
 				<div class="panel panel-default" id="add_contest">
 					<div class="panel-body">
-					<img src="https://i.imgur.com/86qIk7A.png" class="img-thumbnail" alt="Contest Banner">
+					<a href="#"><img src="https://i.imgur.com/86qIk7A.png" class="img-thumbnail" alt="Contest Banner"></a>
 					<br><br>
-					<a href="#" type="button" class="btn btn-default">Add New Contest</a>
+					<a id="btnn" href="#" type="button" class="btn btn-default">Add New Contest</a>
 					</div>
 				</div>
 			</div>

@@ -1,0 +1,64 @@
+<#include "layouts/header.ftl.html">
+	<div class="container-fluid">
+		<div class="row top_padding">
+			<div class="col-md-offset-1 col-sm-7 col-md-offset-4 contest-details">
+				<div class="panel panel-default">
+					<div style="font-size: 20px; font-weight: bold;" class="panel-heading navbar_clr"><i class='fas fa-mug-hot'></i> Contest Name</div>
+					<div class="panel-body">
+						<img src="https://i.imgur.com/XR0hdd8.jpg" class="img-thumbnail" alt="Contest Banner">
+						<table id="contest_problems" class="display" style="width:100%; font-size: 16px;">
+							<thead>
+								<tr>
+				                    <th>#ID</th>
+				                    <th>Name</th>
+				                    <th><span style="color:#4a148c;" class="glyphicon glyphicon-send"></span> Submissions</th>
+				                    <th><span style="font-size:25px;color:green">&#x2713;</span> Accuracy</th>
+				                </tr>
+							</thead>
+			                <tbody>
+			                	<#list 1..6 as x>
+				                	<tr>
+					                    <td><a href="#">1187F</a></td>
+					                    <td><a href="#">Expected Square</a></td>
+					                    <td>15</td>
+					                    <td>${x+85.45}</td>
+					                </tr>
+			                	</#list>
+			                </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 unselectable">
+				<div class="panel panel-default">
+					<div class="panel-body timer-details">
+						<h3>Contest Ends In</h3>
+						<p id="timer">
+							<table align="center">
+								<tr>
+									<th><span id="days">00</span></th>
+									<th><span id="hours">00</span></th>
+									<th><span id="minutes">00</span></th>
+									<th><span id="seconds">00</span></th>
+								</tr>
+								<tr>
+									<td>Days</td>
+									<td>Hrs</td>
+									<td>Min</td>
+									<td>Sec</td>
+								</tr>
+							</table>
+						</p>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3>Contest Ranks</h3>
+						<a href="#" type="button" class="btn btn-default">Go to Contest Ranks</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<#include "layouts/footer.ftl.html">

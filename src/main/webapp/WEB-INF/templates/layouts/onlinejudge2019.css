@@ -300,10 +300,10 @@ footer {
 .footer-copyright a{
 	color:#fff;
 }
-.problems_table{	
+#contest_problems, .problems_table{	
     font-family: verdana,arial,sans-serif;
 }
-.problems_table a{
+#contest_problems a, .problems_table a{
 	color: #333;
 }
 
@@ -373,7 +373,7 @@ footer {
 	max-height: 300px;
 	width: 100%;
 }
-#running_contest a, #add_contest a{
+#running_contest a, #add_contest #btnn{
 	display: block;
   	max-width: 200px;
   	margin: auto;
@@ -385,5 +385,37 @@ footer {
 	.future_contest table>tbody>tr>td:first-child{
 		padding-top: 17px;
 	}
+}
+
+.contest-details img{
+	height: 300px;
+	width: 100%;
+	padding: 20px;
+}
+
+.timer-details{
+	text-align: center;
+}
+
+.timer-details h3{
+	color: #1a237e;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.timer-details span{
+	font-weight: bold;
+	font-size: 20px;
+	color: #fff;
+	font-family: "Lucida Console", Monaco, monospace;
+	background-color:#4a148c;
+	display: block;
+	margin: 8px;
+	padding: 8px;
+	border-radius: 5px;
+}
+
+.timer-details table tr td{
+	color:#455A64;
 }
 
