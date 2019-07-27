@@ -82,6 +82,18 @@
 		<description></description>
 		<servlet-class>me.shaykhsiddique.contest.ContestDetailsView</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>AddContestView</servlet-name>
+		<display-name>AddContestView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.contest.AddContestView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddContestController</servlet-name>
+		<display-name>AddContestController</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.contest.AddContestController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
 		<url-pattern>/home</url-pattern>
@@ -137,6 +149,18 @@
 	<servlet-mapping>
 		<servlet-name>ContestDetailsView</servlet-name>
 		<url-pattern>/contest/view</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddContestView</servlet-name>
+		<url-pattern>/contest/addcontest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddContestView</servlet-name>
+		<url-pattern>/contest/addcontest/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddContestController</servlet-name>
+		<url-pattern>/contest/submitcontest</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
     <welcome-file>home</welcome-file>

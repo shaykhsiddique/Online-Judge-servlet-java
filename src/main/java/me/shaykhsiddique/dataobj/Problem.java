@@ -21,6 +21,7 @@ public class Problem {
 	private String difficulty_level;
 	private int point;
 	private boolean active_status;
+	private String contest_id;
 
 	public Problem() {
 		// TODO Auto-generated constructor stub
@@ -29,7 +30,7 @@ public class Problem {
 	
 	public Problem(String problem_id, String problem_title, String problem_description, String sample_input,
 			String sample_output, String problem_input, String problem_output, int time_limit_Mils, int memory_limit_kb,
-			String author_username, String difficulty_level, int point, boolean active_status) {
+			String author_username, String difficulty_level, int point, boolean active_status, String contest_id) {
 		super();
 		this.problem_id = problem_id;
 		this.problem_title = problem_title;
@@ -44,6 +45,7 @@ public class Problem {
 		this.difficulty_level = difficulty_level;
 		this.point=point;
 		this.active_status = active_status;
+		this.contest_id = contest_id;
 	}
 	
 	
@@ -196,6 +198,7 @@ public class Problem {
 				this.difficulty_level = rs.getString("difficulty_level");
 				this.point = rs.getInt("point");
 				this.active_status = rs.getBoolean("active_status");
+				this.contest_id = rs.getString("difficulty_level");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -206,7 +209,7 @@ public class Problem {
 	public boolean addProblemDao() {
 		Database DB = new Database();
 		try {
-			String sql = "insert into problems(problem_id, problem_title, problem_description, sample_input, sample_output, problem_input, problem_output, time_limit_Mils, memory_limit_kb, author_username, difficulty_level, point, active_status) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into problems(problem_id, problem_title, problem_description, sample_input, sample_output, problem_input, problem_output, time_limit_Mils, memory_limit_kb, author_username, difficulty_level, point, active_status, contest_id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			Connection conn = DB.JdbcConfig();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, this.problem_id);
@@ -222,6 +225,7 @@ public class Problem {
 			ps.setString(11, this.difficulty_level);
 			ps.setInt(12, this.point);
 			ps.setBoolean(13, this.active_status);
+			ps.setString(14, this.contest_id);
 			ps.executeUpdate();
 			conn.close();
 			return true;
@@ -241,4 +245,15 @@ public class Problem {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+
+
+	public String getContest_id() {
+		return contest_id;
+	}
+
+
+	public void setContest_id(String contest_id) {
+		this.contest_id = contest_id;
+	}
+	
 }

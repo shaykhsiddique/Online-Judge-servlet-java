@@ -1,34 +1,46 @@
-package me.shaykhsiddique.problems;
+package me.shaykhsiddique.contest;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import me.shaykhsiddique.dataobj.Problem;
+import me.shaykhsiddique.dataobj.Contest;
+
+@MultipartConfig(maxFileSize = 16177215)
 
 /**
- * Servlet implementation class AddProblemController
+ * Servlet implementation class AddContestController
  */
-public class AddProblemController extends HttpServlet {
+public class AddContestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Configuration cfg;   
+	Configuration cfg;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddProblemController() {
+    public AddContestController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,26 +70,28 @@ public class AddProblemController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String contest_id = request.getParameter("id");
-		Problem problem = new Problem();
-		problem.setProblem_id(request.getParameter("prob_id").trim());
-		problem.setProblem_title(request.getParameter("prob_name").trim());
-		problem.setProblem_description(request.getParameter("ck_edit_field"));
-		problem.setSample_input(request.getParameter("sam_in").trim());
-		problem.setSample_output(request.getParameter("sam_out").trim());
-		problem.setTime_limit_Mils(Integer.parseInt(request.getParameter("time_limit").trim()));
-		problem.setTime_limit_Mils(Integer.parseInt(request.getParameter("memory_limit").trim()));
-		problem.setAuthor_username((String)request.getSession().getAttribute("user"));
-		problem.setDifficulty_level(request.getParameter("difficulty_level").trim());
-		problem.setPoint(Integer.parseInt(request.getParameter("point").trim()));
-		problem.setActive_status(Boolean.parseBoolean(request.getParameter("active_prob")));
-		problem.setContest_id(contest_id);
-		if(request.getParameter("active_prob") != null) {
-			problem.setActive_status(true);
-		}
-		boolean successful_add = problem.addProblemDao();
+		Contest contest = new Contest();
+		contest.setContest_id(request.getParameter("cont_id").trim());
+		contest.setContest_title(request.getParameter("cont_title").trim());
+		contest.setContest_desp(request.getParameter("cont_body"));
+		LocalDateTime ldt_st = LocalDateTime.parse(request.getParameter("cont_sttmp"));
+		Timestamp st_contest = Timestamp.valueOf(ldt_st);
+		contest.setStart_time(st_contest);
+		LocalDateTime ldt_end = LocalDateTime.parse(request.getParameter("cont_endtmp"));
+		Timestamp end_contest = Timestamp.valueOf(ldt_end);
+		contest.setEnd_time(end_contest);
+		List<String> participants = new ArrayList<String>(Arrays.asList(request.getParameter("cont_mbr").split(",")));
+		contest.setParticipants(participants);
+		contest.setContest_author(request.getSession().getAttribute("user").toString());	
+		Part filePart = request.getPart("cont_bnr");
+		InputStream inputStream = filePart.getInputStream();
+		contest.setBanner_data(inputStream);
+		
+		boolean successful_add = contest.addContestDao();
+		
+		
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("addHtmllink", "<a href='/Online-Judge/problems/addproblems?id="+contest_id+"'> Add More Problem</a>");
+		data.put("addHtmllink", "<a href='/Online-Judge/contest/addcontest'> Add More Contest</a>");
 		if(successful_add) {			
 			if(request.getSession().getAttribute("user")!=null) {
 				data.put("logged_in", 1);
@@ -85,7 +99,7 @@ public class AddProblemController extends HttpServlet {
 			}else {
 				data.put("logged_in", 0);
 			}
-			data.put("success_msg", "added added your problem.");
+			data.put("success_msg", " added your Contest.");
 			Template template = cfg.getTemplate("successregister.ftl.html");
 			Writer out = response.getWriter();
 			try {
@@ -95,10 +109,11 @@ public class AddProblemController extends HttpServlet {
 			}
 		}
 		else {			
-			request.setAttribute("error_msg", "Problem Id already exist.");
-			RequestDispatcher rd = request.getRequestDispatcher("/problems/addproblems");
+			request.setAttribute("error_msg", "Contest Id already exist.");
+			RequestDispatcher rd = request.getRequestDispatcher("/contest/addcontest");
 			rd.forward(request,response);
 		}
+		
 	}
 
 	/**

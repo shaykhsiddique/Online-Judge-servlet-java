@@ -1,15 +1,15 @@
 <#include "layouts/header.ftl.html">
 	<div class="container-fluid">
-		<div class="row top_padding top_padding">
+		<div class="row top_padding">
 			<div class="col-sm-10 col-md-offset-1">
 				<div class="panel panel-default login_layout">
 				    <div class="panel-body">
 				    	<h3>Add a New Problem</h3>
-				    	<form class="form-horizontal" action="/Online-Judge/problems/submitproblem" method="POST">
+				    	<form class="form-horizontal" action="/Online-Judge/problems/submitproblem?id=${contest.getContest_id()}" method="POST">
 						    <div class="form-group">
 						      <label class="control-label col-sm-2" for="email">ProblemID:</label>
 						      <div class="col-sm-10">
-						        <input type="text" class="form-control" placeholder="8465A" name="prob_id" required>
+						        <input type="text" class="form-control" value="${contest.getContest_id()}" name="prob_id" required>
 						      </div>
 						    </div>
 						    <div class="form-group">
@@ -85,14 +85,4 @@
 		</div>
 	</div>
 	
-	 <script>
-	  ClassicEditor
-	     .create( document.querySelector( '#ck_edit_field' ) )
-	     .then( editor => {
-	             console.log( editor );
-	     } )
-	     .catch( error => {
-	             console.error( error );
-	     } );
-      </script>
 <#include "layouts/footer.ftl.html">

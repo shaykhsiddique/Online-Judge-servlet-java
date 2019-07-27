@@ -1,4 +1,4 @@
-package me.shaykhsiddique.problems;
+package me.shaykhsiddique.contest;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,18 +16,18 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import me.shaykhsiddique.dataobj.Contest;
 
 /**
- * Servlet implementation class AddProblemsView
+ * Servlet implementation class AddContestView
  */
-public class AddProblemsView extends HttpServlet {
+public class AddContestView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Configuration cfg;   
+	Configuration cfg;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddProblemsView() {
+    public AddContestView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,29 +57,18 @@ public class AddProblemsView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		Map<String, Object> data = new HashMap<String, Object>();
-		String contest_id = request.getParameter("id");
-		Contest contest = new Contest();
-		if(contest.loadContestDao(contest_id)) {
-			data.put("contest", contest);			
+		if(request.getSession().getAttribute("user")==null) {
+			data.put("logged_in", 0);
+			response.sendRedirect(request.getContextPath() + "/login");
 		}else {
-			response.sendRedirect(request.getContextPath() + "/");
-		}
-		if((Integer)request.getSession().getAttribute("role")>1) {			
-			System.out.println("Unsuccessfull");
-			response.sendRedirect("/Online-Judge/error");
-			return;
-		}
-		Template template = cfg.getTemplate("addproblems.ftl.html");					
-		
-		
-		Writer out = response.getWriter();
-		if(request.getSession().getAttribute("user")!=null) {
 			data.put("logged_in", 1);
 			data.put("username", request.getSession().getAttribute("user"));
-		}else {
-			data.put("logged_in", 0);
 		}
+		
+		Template template = cfg.getTemplate("addcontest.ftl.html");
+		Writer out = response.getWriter();
 		try {
 			template.process(data, out);
 		} catch (TemplateException e) {
