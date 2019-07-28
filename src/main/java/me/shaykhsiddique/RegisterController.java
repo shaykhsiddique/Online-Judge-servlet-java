@@ -71,6 +71,8 @@ public class RegisterController extends HttpServlet {
 		Map<String, Object> data = new HashMap<String, Object>();
 		if(success_reg) {			
 			data.put("logged_in", 0);
+			data.put("success_msg", "added added your account.");
+			data.put("addHtmllink", "<a href='/Online-Judge/login'> Login Now</a>");
 			Template template = cfg.getTemplate("successregister.ftl.html");
 			Writer out = response.getWriter();
 			try {

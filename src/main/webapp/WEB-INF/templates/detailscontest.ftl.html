@@ -1,0 +1,70 @@
+<#include "layouts/header.ftl.html">
+	<div class="container-fluid">
+		<div class="row top_padding">
+			<div class="col-md-offset-1 col-sm-7 col-md-offset-4 contest-details">
+				<div class="panel panel-default">
+					<div style="font-size: 20px; font-weight: bold;" class="panel-heading navbar_clr"><i class='fas fa-mug-hot'></i> ${contest.getContest_title()}</div>
+					<div class="panel-body">
+						<img src="https://i.imgur.com/XR0hdd8.jpg" class="img-thumbnail" alt="Contest Banner">
+						<table id="contest_problems" class="display" style="width:100%; font-size: 16px;">
+							<thead>
+								<tr>
+				                    <th>#ID</th>
+				                    <th>Name</th>
+				                    <th><span style="color:#4a148c;" class="glyphicon glyphicon-send"></span> Submissions</th>
+				                    <th><span style="font-size:25px;color:green">&#x2713;</span> Accuracy</th>
+				                </tr>
+							</thead>
+			                <tbody>
+			                	<#list contest_problems as problem>
+				                	<tr>
+					                    <td><a href="/Online-Judge/problems/view?id=${problem.getProblem_id()}">${problem.getProblem_id()}</a></td>
+					                    <td><a href="/Online-Judge/problems/view?id=${problem.getProblem_id()}">${problem.getProblem_title()}</a></td>
+					                    <td>15</td>
+					                    <td>88</td>
+					                </tr>
+			                	</#list>
+			                </tbody>
+						</table>
+						<br>
+						<h3>Details:</h3>
+						<p>${contest.getContest_desp()}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 unselectable">
+				<div class="panel panel-default">
+					<div class="panel-body timer-details">
+						<h3>Contest Ends In</h3>
+						<p id="timer">
+							<table align="center">
+								<tr>
+									<th><span id="days">00</span></th>
+									<th><span id="hours">00</span></th>
+									<th><span id="minutes">00</span></th>
+									<th><span id="seconds">00</span></th>
+								</tr>
+								<tr>
+									<td>Days</td>
+									<td>Hrs</td>
+									<td>Min</td>
+									<td>Sec</td>
+								</tr>
+							</table>
+						</p>
+						<script>set_clock_js(${contest.getEnd_timemili()?long?c});</script>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h3>Contest Ranks</h3>
+						<a href="/Online-Judge/problems/addproblems?id=${contest.getContest_id()}" class="btn btn-default" role="button">Add Problems</a>
+						<br><br>
+						<a href="#" type="button" class="btn btn-default">Go to Contest Ranks</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<#include "layouts/footer.ftl.html">

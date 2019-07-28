@@ -1,0 +1,142 @@
+<#include "layouts/header.ftl.html">
+
+	<div class="container-fluid">
+		<div class="row top_padding running_contest-style unselectable">
+			<div class="col-sm-10 col-md-offset-1">
+				<div class="panel panel-default">
+					<div class="panel-heading navbar_clr"><i class='fas fa-mug-hot'></i> Contest</div>
+					<div class="panel-body">
+						<#list contests as contest>
+							<#if (24*3600 > contest.getWhenTostart()) >
+							<#if (contest.whenToEnd() > 0) >
+								<div id="contest_bar" data-toggle="collapse" data-target="#running_contest">
+									<div class="row">
+										<div class="col-sm-4">							
+											<h4>${contest.getContest_title()}<h4>
+										</div>
+										<div class="col-sm-4">							
+											<h5>Total Registered: 10</h5>
+										</div>
+										<div class="col-sm-4">							
+											<h5>Starting Time: ${contest.getClockFormat(contest.getStart_time())} - ${contest.getDayFormat(contest.getStart_time())}</h5>
+										</div>
+									</div>
+								</div>
+								<div id="running_contest" class="collapse">
+								    <div class="row">
+								    	<div class="col-sm-8">
+								    		<img src="https://i.imgur.com/XR0hdd8.jpg" class="img-thumbnail" alt="Contest Banner">
+								    	</div>
+								    	<div class="col-sm-4 timer-details">
+								    		<#if (contest.getWhenTostart()>0)>
+								    			<h3>Contest Starts In</h3>
+								    			<script>set_clock_js(${contest.getStart_timemili()?long?c});</script>
+								    		<#else>
+									    		<h3>Contest Ends In</h3>
+									    		<script>set_clock_js(${contest.getEnd_timemili()?long?c});</script>
+								    		</#if>
+									    	<p id="timer">
+												<table align="center">
+													<tr>
+														<th><span id="days">00</span></th>
+														<th><span id="hours">00</span></th>
+														<th><span id="minutes">00</span></th>
+														<th><span id="seconds">00</span></th>
+													</tr>
+													<tr>
+														<td>Days</td>
+														<td>Hrs</td>
+														<td>Min</td>
+														<td>Sec</td>
+													</tr>
+												</table>
+											</p>
+											
+										<a href="/Online-Judge/contest/view?id=${contest.getContest_id()}" type="button" class="btn btn-default">Enter in Contest</a>
+										<br>
+										<a href="#" type="button" class="btn btn-default">Edit Contest</a>
+								    	<br>
+								    	<a href="#" type="button" class="btn btn-default">Request for join</a>
+								    	</div>
+								    </div>
+							  	</div>
+							  	<#break>
+						  	</#if>
+						  	</#if>
+					  	</#list>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-sm-7 col-md-offset-4">
+				<div class="panel panel-default">
+					<div style="font-weight: bold; font-size: 22px;" class="panel-heading navbar_clr"><i class='far fa-clock'></i> Upcoming Contest</div>
+					<div class="panel-body future_contest">
+						<table class="table table-hover">
+							<thead>
+						      <tr>
+						        <th>Contest Name</th>
+						        <th>Start Time</th>
+						        <th>Duration</th>
+						        <th>End Time</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						    	<#list contests as contest>
+						    	<#if (contest.getWhenTostart()>0) >
+						    		<#if (contest.whenToEnd() >=0)>
+								      <tr>
+								        <td>${contest.getContest_title()}</td>
+								        <td>${contest.getClockFormat(contest.getStart_time())}<br>${contest.getDayFormat(contest.getStart_time())}</td>
+								        <td>${contest.getContest_duration()} Hours </td>
+								        <td>${contest.getClockFormat(contest.getEnd_time())}<br>${contest.getDayFormat(contest.getEnd_time())}</td>
+								      </tr>	
+						    		</#if>
+						    		</#if>
+						        </#list>
+					        </tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div style="font-weight: bold; font-size: 22px;" class="panel-heading navbar_clr"><i class='far fa-clock'></i> Past Contest</div>
+					<div class="panel-body future_contest">
+						<table class="table table-hover">
+							<thead>
+						      <tr>
+						        <th>Contest Name</th>
+						        <th>Start Time</th>
+						        <th>Duration</th>
+						        <th>End Time</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+							      <#list contests as contest>
+						    			<#if (contest.whenToEnd() =-1)>						    			
+										      <tr>
+										        <td>${contest.getContest_title()}</td>
+										        <td>${contest.getClockFormat(contest.getStart_time())}<br>${contest.getDayFormat(contest.getStart_time())}</td>
+										        <td>${contest.getContest_duration()} Hours</td>
+										        <td>${contest.getClockFormat(contest.getEnd_time())}<br>${contest.getDayFormat(contest.getEnd_time())}</td>
+										      </tr>
+						    			</#if>
+						        </#list>
+						      </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="panel panel-default" id="add_contest">
+					<div class="panel-body">
+					<a href="#"><img src="https://i.imgur.com/86qIk7A.png" class="img-thumbnail" alt="Contest Banner"></a>
+					<br><br>
+					<a id="btnn" href="/Online-Judge/contest/addcontest" type="button" class="btn btn-default">Add New Contest</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<#include "layouts/footer.ftl.html">

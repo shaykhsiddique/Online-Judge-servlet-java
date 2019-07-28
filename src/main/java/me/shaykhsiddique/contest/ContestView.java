@@ -1,8 +1,15 @@
-package me.shaykhsiddique.problems;
+package me.shaykhsiddique.contest;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,18 +23,21 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import me.shaykhsiddique.Database;
 import me.shaykhsiddique.dataobj.Contest;
+import me.shaykhsiddique.dataobj.Problem;
 
 /**
- * Servlet implementation class AddProblemsView
+ * Servlet implementation class ContestView
  */
-public class AddProblemsView extends HttpServlet {
+public class ContestView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Configuration cfg;   
+	Configuration cfg;
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddProblemsView() {
+    public ContestView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,23 +67,30 @@ public class AddProblemsView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String, Object> data = new HashMap<String, Object>();
-		String contest_id = request.getParameter("id");
-		Contest contest = new Contest();
-		if(contest.loadContestDao(contest_id)) {
-			data.put("contest", contest);			
-		}else {
-			response.sendRedirect(request.getContextPath() + "/");
-		}
-		if((Integer)request.getSession().getAttribute("role")>1) {			
-			System.out.println("Unsuccessfull");
-			response.sendRedirect("/Online-Judge/error");
-			return;
-		}
-		Template template = cfg.getTemplate("addproblems.ftl.html");					
 		
+		ArrayList<Contest> contests = new ArrayList<Contest>();;
+		Database DB = new Database();
+		String sql = "select * from contests";
 		
+		Connection conn;
+		try {
+			conn = DB.JdbcConfig();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs=ps.executeQuery();
+			while (rs.next()) {
+				Contest single_contst = new Contest(rs.getString("contest_id"), rs.getString("contest_title"), rs.getString("contest_desp"), rs.getTimestamp("start_time"), rs.getTimestamp("end_time"), rs.getString("participants"), rs.getString("contest_author"), (InputStream) rs.getBinaryStream("banner_data"));
+				contests.add(single_contst);
+				
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		Template template = cfg.getTemplate("contest.ftl.html");
 		Writer out = response.getWriter();
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("contests", contests);
 		if(request.getSession().getAttribute("user")!=null) {
 			data.put("logged_in", 1);
 			data.put("username", request.getSession().getAttribute("user"));
