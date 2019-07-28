@@ -5,6 +5,14 @@ $(document).ready(function() {
 // For demo to fit into DataTables site builder...
 $('#problem_tables').removeClass('display').addClass(
 		'table table-striped table-bordered');
+
+
+// For demo to fit into DataTables site builder...
+$('#submissions_tables').removeClass('display').addClass(
+		'table table-striped table-bordered');
+
+
+
 /* tables for contest problems */
 $(document).ready(function() {
 	$('#contest_problems').DataTable({
@@ -17,6 +25,8 @@ $(document).ready(function() {
 // For demo to fit into DataTables site builder...
 $('#contest_problems').removeClass('display').addClass(
 		'table table-striped table-bordered');
+
+
 
 
 // ck editor
