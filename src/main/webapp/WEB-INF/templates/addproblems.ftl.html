@@ -1,0 +1,88 @@
+<#include "layouts/header.ftl.html">
+	<div class="container-fluid">
+		<div class="row top_padding">
+			<div class="col-sm-10 col-md-offset-1">
+				<div class="panel panel-default login_layout">
+				    <div class="panel-body">
+				    	<h3>Add a New Problem</h3>
+				    	<form class="form-horizontal" action="/Online-Judge/problems/submitproblem?id=${contest.getContest_id()}" method="POST">
+						    <div class="form-group">
+						      <label class="control-label col-sm-2" for="email">ProblemID:</label>
+						      <div class="col-sm-10">
+						        <input type="text" class="form-control" value="${contest.getContest_id()}" name="prob_id" required>
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label col-sm-2" for="pwd">ProblemName:</label>
+						      <div class="col-sm-10">          
+						        <input type="text" class="form-control" placeholder="Find a name" name="prob_name" required>
+						      </div>
+						    </div>
+						    <div class="form-group">
+							  <label for="control-label col-sm-2">Body:</label>
+							  <script src="https://cdn.ckeditor.com/ckeditor5/12.3.0/classic/ckeditor.js"></script>
+							  <div id="ck_editor_style">
+							  		<textarea class="form-control" rows="10" name="ck_edit_field" id="ck_edit_field"></textarea>
+							  </div>
+							 
+							</div>
+							<div class="form-group">
+						      <label class="control-label col-sm-2" for="pwd">Sample Input:</label>
+						      <div class="col-sm-10">          
+						        <textarea class="form-control" rows="5" name="sam_in"></textarea>
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label col-sm-2" for="pwd">Sample Output:</label>
+						      <div class="col-sm-10">          
+						        <textarea class="form-control" rows="5" name="sam_out" required></textarea>
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label col-sm-2" for="email">Time Limit(ms):</label>
+						      <div class="col-sm-10">
+						        <input type="number" class="form-control" value="1000" name="time_limit">
+						      </div>
+						    </div>
+						    <div class="form-group">
+						      <label class="control-label col-sm-2" for="email">Memory Limit(kb):</label>
+						      <div class="col-sm-10">
+						        <input type="number" class="form-control" value="1024" placeholder="1024" name="memory_limit">
+						      </div>
+						    </div>
+						    <div class="form-group">
+								  <label class="control-label col-sm-2" for="difficulty_level">Difficulty Level:</label>
+								  <div class="col-sm-10">
+									  <select class="form-control" id="difficulty_level" name="difficulty_level">
+										    <option>Easy</option>
+										    <option>Medium</option>
+										    <option>hard</option>
+									  </select>
+								  </div>
+							</div>
+							<div class="form-group">
+						      <label class="control-label col-sm-2" for="email">Point:</label>
+						      <div class="col-sm-10">
+						        <input type="number" class="form-control" value="100" name="point">
+						      </div>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <div class="checkbox">
+						          <label><input type="checkbox" name="active_prob"> Active Status</label>
+						        </div>
+						      </div>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <button type="submit" class="btn btn-default">Submit</button>
+						      </div>
+						    </div>
+						  </form>
+				    </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	
+<#include "layouts/footer.ftl.html">

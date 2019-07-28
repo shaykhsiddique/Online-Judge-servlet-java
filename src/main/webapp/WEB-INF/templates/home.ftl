@@ -5,8 +5,8 @@
 		<div class="row">
 			<!-- left part -->
 			<div class="col-sm-3">
-				<nav id="left_announce_panel">
-			    	<ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="1">
+				<div id="left_announce_panel">
+			    	<ul class="nav nav-pills nav-stacked">
 			      	<div class="panel panel-default">
 			        	<div class="panel-heading navbar_clr"> <strong><i class='fas'>&#xf0a1;</i> Announcements</strong></div>
 			        	<div class="panel-body">
@@ -17,7 +17,7 @@
 			         	</div>
 			      	</div>
 			      </ul>
-			    </nav>
+			    </div>
 			</div>
 			<!-- middle part -->
 			<div class="col-sm-6 middle_home">
@@ -58,5 +58,4 @@
 			<!-- end part -->
 		</div>
 	</div>
-</body>
-</html>
+	<#include "layouts/footer.ftl.html">

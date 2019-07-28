@@ -40,6 +40,60 @@
 		<description></description>
 		<servlet-class>me.shaykhsiddique.LogoutController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ProfileView</servlet-name>
+		<display-name>ProfileView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.user.ProfileView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ProblemView</servlet-name>
+		<display-name>ProblemView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.problems.ProblemView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ProblemDetailsView</servlet-name>
+		<display-name>ProblemDetailsView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.problems.ProblemDetailsView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddProblemsView</servlet-name>
+		<display-name>AddProblemsView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.problems.AddProblemsView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddProblemController</servlet-name>
+		<display-name>AddProblemController</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.problems.AddProblemController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ContestView</servlet-name>
+		<display-name>ContestView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.contest.ContestView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ContestDetailsView</servlet-name>
+		<display-name>ContestDetailsView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.contest.ContestDetailsView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddContestView</servlet-name>
+		<display-name>AddContestView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.contest.AddContestView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddContestController</servlet-name>
+		<display-name>AddContestController</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.contest.AddContestController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
 		<url-pattern>/home</url-pattern>
@@ -63,6 +117,50 @@
 	<servlet-mapping>
 		<servlet-name>LogoutController</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProfileView</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProblemView</servlet-name>
+		<url-pattern>/problems</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProblemDetailsView</servlet-name>
+		<url-pattern>/problems/view</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddProblemsView</servlet-name>
+		<url-pattern>/problems/addproblems</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddProblemController</servlet-name>
+		<url-pattern>/problems/submitproblem</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ContestView</servlet-name>
+		<url-pattern>/contest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ContestView</servlet-name>
+		<url-pattern>/contest/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ContestDetailsView</servlet-name>
+		<url-pattern>/contest/view</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddContestView</servlet-name>
+		<url-pattern>/contest/addcontest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddContestView</servlet-name>
+		<url-pattern>/contest/addcontest/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddContestController</servlet-name>
+		<url-pattern>/contest/submitcontest</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
     <welcome-file>home</welcome-file>
