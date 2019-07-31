@@ -16,6 +16,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import me.shaykhsiddique.judgeserver.JudgeServer;
 
 /**
  * Servlet implementation class HomeController
@@ -52,6 +53,11 @@ public class HomeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+//		JudgeServer jsvr = new JudgeServer();
+//		jsvr.judgeSubmission();
+//		System.out.println("Judge Status: "+jsvr.getJudgeresult());
+		
 		Template template = cfg.getTemplate("home.ftl");
 		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();

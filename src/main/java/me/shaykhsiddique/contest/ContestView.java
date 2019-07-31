@@ -24,6 +24,7 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import me.shaykhsiddique.Database;
+import me.shaykhsiddique.User;
 import me.shaykhsiddique.dataobj.Contest;
 import me.shaykhsiddique.dataobj.Problem;
 
@@ -93,9 +94,14 @@ public class ContestView extends HttpServlet {
 		data.put("contests", contests);
 		if(request.getSession().getAttribute("user")!=null) {
 			data.put("logged_in", 1);
+			User user = new User();
+			user.loadUserDao(request.getSession().getAttribute("user").toString());
+			
 			data.put("username", request.getSession().getAttribute("user"));
+			data.put("user", user);
 		}else {
 			data.put("logged_in", 0);
+			response.sendRedirect(request.getContextPath() + "/login");
 		}
 		try {
 			template.process(data, out);
