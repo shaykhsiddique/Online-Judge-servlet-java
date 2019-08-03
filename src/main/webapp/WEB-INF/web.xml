@@ -94,6 +94,42 @@
 		<description></description>
 		<servlet-class>me.shaykhsiddique.contest.AddContestController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>AddSubmission</servlet-name>
+		<display-name>AddSubmission</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.submission.AddSubmission</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddSubmissionView</servlet-name>
+		<display-name>AddSubmissionView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.submission.AddSubmissionView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddSubmitcodeView</servlet-name>
+		<display-name>AddSubmitcodeView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.submission.AddSubmitcodeView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddSubmitController</servlet-name>
+		<display-name>AddSubmitController</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.submission.AddSubmitController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SubmissionView</servlet-name>
+		<display-name>SubmissionView</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.submission.SubmissionView</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RanklistContest</servlet-name>
+		<display-name>RanklistContest</display-name>
+		<description></description>
+		<servlet-class>me.shaykhsiddique.dataobj.RanklistContest</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>HomeController</servlet-name>
 		<url-pattern>/home</url-pattern>
@@ -161,6 +197,50 @@
 	<servlet-mapping>
 		<servlet-name>AddContestController</servlet-name>
 		<url-pattern>/contest/submitcontest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmission</servlet-name>
+		<url-pattern>/submitproblem</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmission</servlet-name>
+		<url-pattern>/submitproblem/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmissionView</servlet-name>
+		<url-pattern>/submitcode</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmissionView</servlet-name>
+		<url-pattern>/submitcode/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmitcodeView</servlet-name>
+		<url-pattern>/problem/submitcode</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmitcodeView</servlet-name>
+		<url-pattern>/problem/submitcode/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddSubmitController</servlet-name>
+		<url-pattern>/problem/createsubmit</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SubmissionView</servlet-name>
+		<url-pattern>/submission</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SubmissionView</servlet-name>
+		<url-pattern>/submission/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RanklistContest</servlet-name>
+		<url-pattern>/contest/rank</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RanklistContest</servlet-name>
+		<url-pattern>/contest/rank/</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
     <welcome-file>home</welcome-file>

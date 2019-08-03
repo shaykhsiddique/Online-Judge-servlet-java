@@ -1,4 +1,4 @@
-package me.shaykhsiddique;
+package me.shaykhsiddique.submission;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,23 +16,27 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import me.shaykhsiddique.judgeserver.JudgeServer;
+import me.shaykhsiddique.dataobj.Problem;
 
 /**
- * Servlet implementation class HomeController
+ * Servlet implementation class AddSubmitcodeView
  */
-public class HomeController extends HttpServlet {
+public class AddSubmitcodeView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    Configuration cfg;
+	Configuration cfg; 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeController() {
+    public AddSubmitcodeView() {
         super();
+        // TODO Auto-generated constructor stub
     }
-    
-    public void init(ServletConfig config) throws ServletException {
-    	super.init(config);
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
     	String tampl_path = "/WEB-INF/templates";
     	cfg = new Configuration(Configuration.VERSION_2_3_28);
 
@@ -47,31 +51,46 @@ public class HomeController extends HttpServlet {
     	cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
     	cfg.setLogTemplateExceptions(false);
     	cfg.setWrapUncheckedExceptions(true);
-    }
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		JudgeServer jsvr = new JudgeServer();
-//		jsvr.judgeSubmission();
-//		System.out.println("Judge Status: "+jsvr.getJudgeresult());
-		
-		Template template = cfg.getTemplate("home.ftl");
-		Writer out = response.getWriter();
 		Map<String, Object> data = new HashMap<String, Object>();
-		if(request.getSession().getAttribute("user")!=null) {
-			data.put("logged_in", 1);
-			data.put("username", request.getSession().getAttribute("user"));
+		
+		String problem_id = request.getParameter("p_id").trim();
+		Problem pbrm_sbmt = new Problem();
+		if(pbrm_sbmt.loadProblemDao(problem_id)) {
+			//Syccessfully load this problem
+			data.put("problem", pbrm_sbmt);
+			if(request.getSession().getAttribute("user")!=null) {
+				data.put("logged_in", 1);
+				data.put("username", request.getSession().getAttribute("user"));
+			}else {
+				data.put("logged_in", 0);
+				response.sendRedirect(request.getContextPath() + "/");
+			}
+			Template template = cfg.getTemplate("addsubmission.ftl.html");
+			Writer out = response.getWriter();
+			
+			if(request.getAttribute("error_msg")!=null)
+				data.put("error_msg", 1);
+			else
+				data.put("error_msg", 0);
+			
+			try {
+				template.process(data, out);
+			} catch (TemplateException e) {
+				e.printStackTrace();
+			}
+			
+			
 		}else {
-			data.put("logged_in", 0);
+			//faild to load this problem
+			response.sendRedirect(request.getContextPath() + "/error");
 		}
-		try {
-			template.process(data, out);
-		} catch (TemplateException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	/**

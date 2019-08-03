@@ -198,7 +198,7 @@ public class Problem {
 				this.difficulty_level = rs.getString("difficulty_level");
 				this.point = rs.getInt("point");
 				this.active_status = rs.getBoolean("active_status");
-				this.contest_id = rs.getString("difficulty_level");
+				this.contest_id = rs.getString("contest_id");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

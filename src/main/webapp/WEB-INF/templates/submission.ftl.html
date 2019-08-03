@@ -1,0 +1,99 @@
+<#include "layouts/header.ftl.html">
+
+<style>
+	#submissions_tables{
+		width:100%; 
+		font-size: 14px;
+		text-align: center;
+	}
+	
+	#submissions_tables tr td a{
+		color: #333;
+	}
+	
+	#submissions_tables thead th{
+		text-align: center;
+	}
+	
+	.loader {
+		  margin: auto;
+		  border: 4px solid #f3f3f3;
+		  border-radius: 50%;
+		  border-top: 4px solid blue;
+		  border-bottom: 4px solid blue;
+		  width: 25px;
+		  height: 25px;
+		  -webkit-animation: spin 2s linear infinite;
+		  animation: spin 2s linear infinite;
+		}
+		
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+		
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+	
+</style>
+
+
+	<div class="container-fluid top_padding">
+		<div class="row">
+			<div class="col-sm-10 col-md-offset-1">
+				<div class="panel panel-default">				
+					<div style="font-weight: bold; font-size: 25px;" class="panel-heading navbar_clr"><i class="glyphicon glyphicon-send"></i> Submissions</div>
+					<div class="panel-body">
+						<table id="submissions_tables" class="display">
+							<thead>
+								<tr>
+									<th>#ID</th>
+									<th>Problem</th>
+									<th>ProblemId</th>
+									<th>ContestId</th>
+									<th>Time</th>
+									<th>UserId</th>
+									<th>Result</th>
+								</tr>
+							</thead>
+							<tbody>
+								<#list submissions as subm>
+									<tr>
+										<td><a href="#">${subm.getSub_id()}</a></td>
+										<td><a href="#">${subm.loadProblemTitle()}</a></td>
+										<td>${subm.getSub_problem_id()}</td>
+										<td><a href="#">${subm.getSub_contest_id()}</a></td>
+										<td>${subm.submitTimeFormator()} ${subm.submitDateFormator()}</td>
+										<td>${subm.getSub_user_id()}</td>
+										<#if subm.getJudge_status() == "IQ">
+											<td class="unselectable"><div class="loader"></div></td>
+										<#elseif subm.getJudge_status() == "AC">
+											<td class="unselectable"><span style="font-weight:bold; font-size:20px;color:green">&#x2713;</span></td>
+										<#elseif subm.getJudge_status() == "WA">
+											<td>&#x274C;</td>
+										<#elseif subm.getJudge_status() == "CE">
+											<td>Compilation Error</td>
+										<#elseif subm.getJudge_status() == "TLE">
+											<td>Time Limit Exceed</td>
+										<#else>
+											<td>Unknown Error</td>
+										</#if>
+									</tr>
+								</#list>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<#if fromContest == 1>
+		<script>filterSubmission('${srch_qry}');</script>
+	<#else>
+		<script>filterSubmission("");</script>
+	</#if>
+
+<#include "layouts/footer.ftl.html">

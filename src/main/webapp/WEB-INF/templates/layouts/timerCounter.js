@@ -41,3 +41,16 @@ function set_clock_js(rem) {
 		}
 	}, 1000);
 }
+
+/* tables for all submissions */
+
+function filterSubmission(qry) {
+	$(document).ready(function() {
+		$('#submissions_tables').DataTable({
+			order : [],
+			"search" : {
+				"search" : qry
+			}
+		});
+	});
+}
