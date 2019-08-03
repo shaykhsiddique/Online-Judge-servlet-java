@@ -43,9 +43,9 @@ Class `JudgeServer.java` will access read and write permission, for compiling an
 ![homepage](https://user-images.githubusercontent.com/18369069/62414304-68421e00-b63b-11e9-83a9-f59c6347b2d6.png)
 
 **Login**
-
+![login](https://user-images.githubusercontent.com/18369069/62414335-c7a02e00-b63b-11e9-957c-d781dfd41a6c.png)
 **Registration**
-
+![registration](https://user-images.githubusercontent.com/18369069/62414337-ca9b1e80-b63b-11e9-95cd-7ef9728d6c57.png)
 **Contest**
 
 **Problems**
