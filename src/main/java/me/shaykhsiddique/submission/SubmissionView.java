@@ -1,4 +1,4 @@
-package me.shaykhsiddique.problems;
+package me.shaykhsiddique.submission;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,19 +22,19 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import me.shaykhsiddique.Database;
-import me.shaykhsiddique.dataobj.Contest;
 import me.shaykhsiddique.dataobj.Problem;
+import me.shaykhsiddique.dataobj.Submission;
 
 /**
- * Servlet implementation class ProblemDetailsView
+ * Servlet implementation class SubmissionView
  */
-public class ProblemDetailsView extends HttpServlet {
+public class SubmissionView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Configuration cfg;
+	Configuration cfg;   
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProblemDetailsView() {
+    public SubmissionView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class ProblemDetailsView extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		super.init(config);
+    	super.init(config);
     	String tampl_path = "/WEB-INF/templates";
     	cfg = new Configuration(Configuration.VERSION_2_3_28);
 
@@ -64,43 +64,47 @@ public class ProblemDetailsView extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String problem_id = request.getParameter("pid");
-		Problem problem = new Problem();
-		problem.loadProblemDao(problem_id);
-		String this_contestId = problem.getContest_id();
 		
-		//load this contest
-		Contest this_contst = new Contest();
-		this_contst.loadContestDao(this_contestId);
-		
-//		load related problems from the same contest
+//		fetching all submissions from database and load into array list
+		ArrayList<Submission>allSubmissions = new ArrayList<Submission>();
+		Map<String, String> problem_titles;
 		Database DB = new Database();
-		String sql = "select * from problems where contest_id = ?";
-		ArrayList<Problem> contest_problems = new ArrayList<Problem>();
+		String sql = "select * from contest_submissions ORDER BY sub_time DESC";
 		Connection conn;
 		try {
 			conn = DB.JdbcConfig();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, this_contestId);
 			ResultSet rs=ps.executeQuery();
-			while (rs.next()) {
-				Problem problm = new Problem(rs.getString("problem_id"), rs.getString("problem_title"), rs.getString("problem_description"), rs.getString("sample_input"), rs.getString("sample_output"), rs.getString("problem_input"), rs.getString("problem_output"), rs.getInt("time_limit_Mils"), rs.getInt("memory_limit_kb"), rs.getString("author_username"), rs.getString("difficulty_level"), rs.getInt("point"), rs.getBoolean("active_status"), rs.getString("contest_id"));
-				if(!problem_id.equals(problm.getProblem_id())) {
-					contest_problems.add(problm);
-				}
+			while (rs.next()) { 
+				Submission submssn = new Submission(rs.getString("sub_id"), rs.getString("sub_code"),rs.getString("sub_lang"), rs.getTimestamp("sub_time"), rs.getString("judge_status"), rs.getString("sub_problem_id"), rs.getString("sub_contest_id"), rs.getString("sub_user_id"));
+				allSubmissions.add(submssn);				
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
+//		set data for passing the freemarker template engine
 		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("contest_problems", contest_problems);
-		data.put("contest", this_contst);
-		Template template = cfg.getTemplate("detailsproblem.ftl.html");
-		Writer out = response.getWriter();
+		data.put("submissions", allSubmissions);
 		
-		data.put("problem", problem);
+		
+//		check from where request came from
+		if(request.getParameter("qry") != null) {
+			// redialed from contest page
+			data.put("fromContest", 1);
+//			data.put("srch_qry", request.getParameter("qry"));
+			data.put("srch_qry", request.getSession().getAttribute("user").toString());
+			if(request.getSession().getAttribute("user")==null) {
+				response.sendRedirect(request.getContextPath() + "/login");
+			}
+			
+		}else{
+			data.put("fromContest", 0);
+		}
+		
+		Template template = cfg.getTemplate("submission.ftl.html");
+		Writer out = response.getWriter();
 		if(request.getSession().getAttribute("user")!=null) {
 			data.put("logged_in", 1);
 			data.put("username", request.getSession().getAttribute("user"));
@@ -112,7 +116,6 @@ public class ProblemDetailsView extends HttpServlet {
 		} catch (TemplateException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**

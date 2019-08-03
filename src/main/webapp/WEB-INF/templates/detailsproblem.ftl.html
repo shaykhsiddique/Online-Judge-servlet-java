@@ -56,14 +56,13 @@
 				<div style="padding-top: 20px">
 					<div class="panel panel-default">
 						<div class="panel-heading navbar_clr">
-							<strong>Summer Contest 2019 </strong>
+							<strong>${contest.getContest_title()} </strong>
 						</div>
 						<div class="panel-body">
 							<ul>
-							  <li><a href="#">Problem A</a></li>
-							  <li><a href="#">Problem B</a></li>
-							  <li><a href="#">Problem C</a></li>
-							  <li><a href="#">Problem D</a></li>
+								<#list contest_problems as prblm>
+									  <li><a href="/Online-Judge/problems/view?pid=${prblm.getProblem_id()}">${prblm.getProblem_title()}</a></li>
+							    </#list>
 							</ul>
 						</div>
 					</div>
@@ -74,7 +73,7 @@
 					</div>
 					<div class="panel-body">
 						<strong>Submit Solution: </strong><br>
-						<a style="float: right" href="#" class="btn btn-success" role="button">Submit Code</a><br>
+						<a style="float: right" href="/Online-Judge/problem/submitcode?c_id=${contest.getContest_id()}&p_id=${problem.getProblem_id()}" class="btn btn-success" role="button">Submit Code</a><br>
 					</div>
 				</div>
 			</div>
