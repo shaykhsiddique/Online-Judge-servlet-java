@@ -1,5 +1,7 @@
 Online-Judge-servlet-java
 ==========
+	
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](http://shaykhsiddique.me)
 
 Online Judge a dynamic web *Maven Project*. Used Servlet - Java for UI used Bootstrap4 and freemarker template engine . Contest will be hosted with acm standard contest rules.
 
@@ -38,6 +40,8 @@ Class `JudgeServer.java` will access read and write permission, for compiling an
 
 **Homepage**
 
+![homepage](https://user-images.githubusercontent.com/18369069/62414304-68421e00-b63b-11e9-83a9-f59c6347b2d6.png)
+
 **Login**
 
 **Registration**
@@ -59,14 +63,14 @@ Documentation
 - For easy installation/testing install *Eclipse Java EE IDE* [eclipse.org](https://www.eclipse.org/).
 - Download Git repository into *Apache Tomcat 8*.
 
-```bash
+```sh
 	$ git clone https://github.com/shaykhsiddique/Online-Judge-servlet-java.git
 ```
 - If configure with *Eclipse* Make sure the server is working correctly.
 - Change `Database.java` with database configuration. `src/main/me.shaykhsiddique/Database.java`
 - `onlinejudge2019.sql` contains the database schema, run it on mysql server.
 
-```bash
+```sh
 	Admin username: shaykhsiddique
 	Admin password: 123456
 ```
