@@ -1,12 +1,12 @@
-#Online-Judge-servlet-java
---------------------------------
+Online-Judge-servlet-java
+==========
 
 Online Judge a dynamic web *Maven Project*. Used Servlet - Java for UI used Bootstrap4 and freemarker template engine . Contest will be hosted with acm standard contest rules.
 
-##Description
+Description
 --------------
 
-#####Maven Dependency:
+*Maven Dependency:*
 - **servlet-spec**- `javax.servlet:javax.servlet-api`
 - **junit4**- `junit:junit`
 - **mysql-connector-j**- `mysql:mysql-connector-java`
@@ -34,7 +34,7 @@ Database class contains the mysql server location. Path of database class: `src/
 Class `JudgeServer.java` will access read and write permission, for compiling and judging inputs and outputs. This process is started in `src/me.shaykhsiddique.JudgeServer/BackgroundJudge.java`.
 
 
-#####Added Some Screenshots:
+*Added Some Screenshots:*
 
 **Homepage**
 
@@ -51,8 +51,8 @@ Class `JudgeServer.java` will access read and write permission, for compiling an
 **Submissions**
 
 
-##Documentation
------------------
+Documentation
+-----------
 **Linux-Server:**
 - Download *Apache Tomcat 8* webserver or newer version from here- [tomcat.apache.org](https://tomcat.apache.org/).
 - Make sure have installed `JAVA`, `javac`, `gcc`, `g++`, `python`. [ *judgeserver used system compiler* ]
