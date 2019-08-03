@@ -62,7 +62,7 @@
 								<#list submissions as subm>
 									<tr>
 										<td><a href="#">${subm.getSub_id()}</a></td>
-										<td><a href="#">${subm.loadProblemTitle()}</a>${fromContest}</td>
+										<td><a href="#">${subm.loadProblemTitle()}</a></td>
 										<td>${subm.getSub_problem_id()}</td>
 										<td><a href="#">${subm.getSub_contest_id()}</a></td>
 										<td>${subm.submitTimeFormator()} ${subm.submitDateFormator()}</td>
@@ -73,6 +73,12 @@
 											<td class="unselectable"><span style="font-weight:bold; font-size:20px;color:green">&#x2713;</span></td>
 										<#elseif subm.getJudge_status() == "WA">
 											<td>&#x274C;</td>
+										<#elseif subm.getJudge_status() == "CE">
+											<td>Compilation Error</td>
+										<#elseif subm.getJudge_status() == "TLE">
+											<td>Time Limit Exceed</td>
+										<#else>
+											<td>Unknown Error</td>
 										</#if>
 									</tr>
 								</#list>

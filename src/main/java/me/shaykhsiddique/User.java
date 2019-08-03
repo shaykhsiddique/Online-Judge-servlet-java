@@ -46,6 +46,38 @@ public class User {
 		}
 	}
 	
+	public boolean loadUserDao(String __username) {
+		Database DB =new Database();
+		String sql = "select * from users where username=?";
+		Connection conn;
+		boolean status = false;
+		try {
+			conn = DB.JdbcConfig();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, __username.trim());
+			ResultSet rs=ps.executeQuery();
+			status=rs.next();
+			if(status) {
+//				load initilization from databases
+				this.username = rs.getString("username");
+				this.fullname = rs.getString("fullname");
+				this.email=rs.getString("email");
+				this.password=rs.getString("password");
+				this.user_role=rs.getInt("user_rule");
+				this.rank_score = rs.getInt("score");
+				conn.close();
+			}
+			return status;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
+	
 	public boolean userValidateDao(String __username, String __password) {
 
 		Database DB_login = new Database();

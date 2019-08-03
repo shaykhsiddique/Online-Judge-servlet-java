@@ -54,9 +54,13 @@
 											
 										<a href="/Online-Judge/contest/view?id=${contest.getContest_id()}" type="button" class="btn btn-default">Enter in Contest</a>
 										<br>
-										<a href="#" type="button" class="btn btn-default">Edit Contest</a>
-								    	<br>
-								    	<a href="#" type="button" class="btn btn-default">Request for join</a>
+										<#if user.getUser_role()==1>
+										
+											<a href="#" type="button" class="btn btn-default">Edit Contest</a>
+										</#if>
+										<br>
+
+										<a href="#" type="button" class="btn btn-default">Request for join</a>
 								    	</div>
 								    </div>
 							  	</div>
@@ -93,6 +97,11 @@
 								        <td>${contest.getClockFormat(contest.getEnd_time())}<br>${contest.getDayFormat(contest.getEnd_time())}</td>
 								      </tr>	
 						    		</#if>
+						    		<#else>
+						    			<tr>
+						    				<td colspan="4" align="center">No new Contest</td>
+						    			</tr>
+						    			<#break>
 						    		</#if>
 						        </#list>
 					        </tbody>

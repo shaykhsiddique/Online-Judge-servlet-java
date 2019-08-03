@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 import me.shaykhsiddique.Database;
 
@@ -23,12 +24,12 @@ public class Submission {
 	
 	public String getSub_id() {
 //		make a default string to make submission id security  ##OJ_0 
-		return "OJ_0"+sub_id;
+		return "OJ_"+sub_id.substring(0, Math.min(this.sub_id.length(), 8));
 	}
 
 
-
 	public void setSub_id(String sub_id) {
+		
 		this.sub_id = sub_id;
 	}
 
@@ -147,20 +148,36 @@ public class Submission {
 		this.sub_user_id = sub_user_id;
 	}
 
-
-
-	public boolean addSubmissionDao() {
+	public void updateJudgeStatusDao(String jstatus) {
 		Database DB = new Database();
-		String sql = "insert into contest_submissions(sub_code, sub_lang, judge_status, sub_problem_id, sub_contest_id, sub_user_id) values(?, ?, ?, ?, ?, ?)";
+		String sql = "UPDATE contest_submissions SET judge_status=? WHERE sub_id=?";
 		try {
 			Connection conn = DB.JdbcConfig();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, this.sub_code);
-			ps.setString(2, this.sub_lang);
-			ps.setString(3, this.judge_status);
-			ps.setString(4, this.sub_problem_id);
-			ps.setString(5, this.sub_contest_id);
-			ps.setString(6, this.sub_user_id);
+			ps.setString(1, jstatus);
+			ps.setString(2, this.sub_id);
+			ps.executeUpdate();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public boolean addSubmissionDao() {
+		Database DB = new Database();
+		this.sub_id = UUID.randomUUID().toString().replaceAll("-", "");
+		String sql = "insert into contest_submissions(sub_id, sub_code, sub_lang, judge_status, sub_problem_id, sub_contest_id, sub_user_id) values(?, ?, ?, ?, ?, ?, ?)";
+		try {
+			Connection conn = DB.JdbcConfig();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, this.sub_id);
+			ps.setString(2, this.sub_code);
+			ps.setString(3, this.sub_lang);
+			ps.setString(4, this.judge_status);
+			ps.setString(5, this.sub_problem_id);
+			ps.setString(6, this.sub_contest_id);
+			ps.setString(7, this.sub_user_id);
 			ps.executeUpdate();
 			conn.close();
 			return true;
@@ -186,6 +203,5 @@ public class Submission {
 		String timeformat = new SimpleDateFormat("hh.mm a").format(this.sub_time.getTime());
 		return timeformat;
 	}
-	
 
 }

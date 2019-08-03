@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.shaykhsiddique.dataobj.Problem;
 import me.shaykhsiddique.dataobj.Submission;
+import me.shaykhsiddique.judgeserver.BackgroundJudge;
 
 /**
  * Servlet implementation class AddSubmitController
@@ -47,7 +48,8 @@ public class AddSubmitController extends HttpServlet {
 		submission.setSub_user_id(request.getSession().getAttribute("user").toString());
 		
 		Boolean success_submit =  submission.addSubmissionDao();
-		
+		Thread thread_judge = new Thread(new BackgroundJudge(submission));
+		thread_judge.start();
 		if(success_submit) {
 			response.sendRedirect(request.getContextPath() + "/submission?qry="+submission.getSub_contest_id());
 		}else {
